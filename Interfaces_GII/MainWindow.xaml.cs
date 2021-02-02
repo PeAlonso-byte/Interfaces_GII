@@ -23,6 +23,8 @@ namespace Interfaces_GII
         double ancho, alto;
         Polyline linea, lineaX, lineaY;
         private CuadroModal cdm;
+        private SolidColorBrush brush;
+        private Color color1, color2;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,6 +34,9 @@ namespace Interfaces_GII
             lineaX = null;
             lineaY = null;
             cdm = null;
+            color1 = (Color)ColorConverter.ConvertFromString("#eaecff");
+            color2 = (Color)ColorConverter.ConvertFromString("#3a3d57");
+            brush = new SolidColorBrush(color1);
         }
 
         /* METODOS PARA DIBUJAR LA GRAFICA */
@@ -67,14 +72,14 @@ namespace Interfaces_GII
         {
             Point p;
             double x;
-
+            brush = new SolidColorBrush(color1);
             ancho = miCanvas.ActualWidth;
             alto = miCanvas.ActualHeight;
 
             if (linea == null)
             {
                 linea = new Polyline();
-                linea.Stroke = Brushes.Red;
+                linea.Stroke = brush;
                 linea.StrokeThickness = 2;
 
             }
@@ -98,13 +103,13 @@ namespace Interfaces_GII
         {
             Point p;
             double x;
-
+            brush = new SolidColorBrush(color2);
             ancho = miCanvas.ActualWidth;
             alto = miCanvas.ActualHeight;
             if (lineaX == null)
             {
                 lineaX = new Polyline();
-                lineaX.Stroke = Brushes.Black;
+                lineaX.Stroke = brush;
                 lineaX.StrokeThickness = 2;
 
             }
@@ -123,7 +128,7 @@ namespace Interfaces_GII
             if (lineaY == null)
             {
                 lineaY = new Polyline();
-                lineaY.Stroke = Brushes.Black;
+                lineaY.Stroke = brush;
                 lineaY.StrokeThickness = 2;
 
             }

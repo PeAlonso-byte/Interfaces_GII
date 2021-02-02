@@ -4,19 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interfaces_GII"
+        Icon="./icono.ico"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid SizeChanged="Grid_SizeChanged">
+        Title="Calculator" Height="450" Width="800">
+    <Grid SizeChanged="Grid_SizeChanged" Background="#3a3d57">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="btnDibujo" Click="btnDibujo_Click" Grid.Row="1" Content="Dibujar"/>
-        <Canvas x:Name="miCanvas" Grid.Row="2">
+        <Button x:Name="btnDibujo" Click="btnDibujo_Click" Grid.Row="1" Content="Dibujar" Foreground="white" Background="Transparent"/>
+        <Canvas x:Name="miCanvas" Grid.Row="2" Margin="10 10" Background="#53577d">
 
         </Canvas>
-        <Menu Grid.Row="0">
+        <Menu Grid.Row="0" Background="#3a3d57" Foreground="White">
             <MenuItem Header = "Añadir" Name="CDModal" Click="MenuItem_Click"/>
         </Menu>
     </Grid>

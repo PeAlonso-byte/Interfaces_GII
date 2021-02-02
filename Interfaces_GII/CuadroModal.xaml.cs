@@ -23,5 +23,10 @@ namespace Interfaces_GII
         {
             InitializeComponent();
         }
+
+        private void listaValores_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

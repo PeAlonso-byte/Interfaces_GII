@@ -6,7 +6,31 @@
         xmlns:local="clr-namespace:Interfaces_GII"
         mc:Ignorable="d"
         Title="CuadroModal" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Background="#3a3d57">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" HorizontalAlignment="center" Orientation="Horizontal">
+            <Button x:Name="btnAnadir" Content="Añadir" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
+            <Button x:Name="btnEditar" Content="Editar" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
+            <Button x:Name="btnEliminar" Content="Eliminar" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" HorizontalAlignment="center" Orientation="Horizontal">
+            <Button x:Name="btnAceptar" Content="Aceptar" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
+            <Button x:Name="btnCancelar" Content="Cancelar" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
+        </StackPanel>
+        <ListView Name="listaValores" Grid.Row="1" Margin="10 10" SelectionMode="Single" SelectionChanged="listaValores_SelectionChanged" Background="#53577d">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="X" DisplayMemberBinding="{Binding Nombre}" Width="400"/>
+                    <GridViewColumn Header="Y" DisplayMemberBinding="{Binding Apellidos}" Width="160" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </Window>
