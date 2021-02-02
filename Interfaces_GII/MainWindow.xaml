@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:Interfaces_GII"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid SizeChanged="Grid_SizeChanged">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button x:Name="btnDibujo" Click="btnDibujo_Click" Grid.Row="1" Content="Dibujar"/>
+        <Canvas x:Name="miCanvas" Grid.Row="2">
+
+        </Canvas>
+        <Menu Grid.Row="0">
+            <MenuItem Header = "Añadir" Name="CDModal" Click="MenuItem_Click"/>
+        </Menu>
     </Grid>
 </Window>
