@@ -15,7 +15,6 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" HorizontalAlignment="Left" Orientation="Horizontal">
-
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -27,11 +26,10 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="xText" Text="X: " Grid.Row="0" Grid.Column="0" Foreground="White" HorizontalAlignment="Left"  Margin="10"/>
                 <TextBox x:Name="xTextBox" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="10" Width="50" AllowDrop="False" KeyDown="xTextBox_KeyDown"/>
-                
+
                 <TextBlock x:Name="yText" Text="Y: " Grid.Row="1" Grid.Column="0" Foreground="White" HorizontalAlignment="Left" Margin="10"/>
                 <TextBox x:Name="yTextBox" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" AllowDrop="False" KeyDown="yTextBox_KeyDown" Width="50" Margin="10"/>
             </Grid>
-            
             <Button x:Name="btnAnadir" Content="Añadir" Click="btnAnadir_Click" Background="#53577d" Margin="10 7" Padding="25 10" Foreground="White" BorderBrush="White"/>
         </StackPanel>
 
@@ -39,11 +37,13 @@
             <Button x:Name="btnAceptar" Click="btnAceptar_Click" Content="Aceptar" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
             <Button x:Name="btnCancelar" Click="btnCancelar_Click" Content="Cancelar" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
         </StackPanel>
-
-        <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button x:Name="btnAleatorio" Content="Generar aleatorio" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="btnLimpiar" Content="Vaciar Datos" Click="btnLimpiar_Click" Background="#53577d" Margin="10 7" Padding="25 10" Foreground="White" BorderBrush="White"/>
         </StackPanel>
-        <DataGrid x:Name="CustomerGrid" RowEditEnding="CustomerGrid_RowEditEnding" IsReadOnly="false" ItemsSource="{Binding}" AutoGenerateColumns="false" CanUserSortColumns="false" CanUserDeleteRows="true" CanUserAddRows="False" Grid.Row="1" AlternatingRowBackground="LightBlue" AlternationCount="2" Background="#53577d" Margin="10 10">
+        <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button x:Name="btnAleatorio" Content="Generar aleatorio" Background="#53577d" Margin="10 7" Padding="20 10" Foreground="White" BorderBrush="White"/>
+        </StackPanel>
+        <DataGrid x:Name="CustomerGrid" IsReadOnly="false" ItemsSource="{Binding}" AutoGenerateColumns="false" CanUserSortColumns="false" CanUserDeleteRows="true" CanUserAddRows="False" Grid.Row="1" AlternatingRowBackground="LightBlue" AlternationCount="2" Background="#53577d" Margin="10 10">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="HorizontalContentAlignment" Value="center"/>

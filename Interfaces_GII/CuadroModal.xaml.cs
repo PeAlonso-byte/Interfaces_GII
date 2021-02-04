@@ -34,18 +34,6 @@ namespace Interfaces_GII
             DialogResult = true;
         }
 
-        private void CustomerGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
-        {
-            if (datos.Count == 0)
-            {
-                Coordenadas coor1 = new Coordenadas();
-                
-                //DataGridViewRow row = CustomerGrid.
-                //string value = row.Cells["IPID"].Value.ToString();
-
-            }
-        }
-
         private void xTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             var theKeyAsAString = e.Key.ToString();
@@ -130,6 +118,15 @@ namespace Interfaces_GII
                     
                 }
             }
+        }
+
+        private void btnLimpiar_Click(object sender, RoutedEventArgs e)
+        {
+            if (datos != null)
+            {
+                datos = new ObservableCollection<Coordenadas>();
+            }
+            cargaDatos();
         }
     }
 }

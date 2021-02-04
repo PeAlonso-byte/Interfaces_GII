@@ -47,9 +47,12 @@ namespace Interfaces_GII
         {
             if ((String)btnDibujo.Content == "Dibujar")
             {
-                dibuja();
-                dibuja_ejes();
-                btnDibujo.Content = "Limpiar";
+                if (datosM != null && datosM.Count() != 0)
+                {
+                    dibuja();
+                    dibuja_ejes();
+                    btnDibujo.Content = "Limpiar";
+                }
             }
             else
             {
