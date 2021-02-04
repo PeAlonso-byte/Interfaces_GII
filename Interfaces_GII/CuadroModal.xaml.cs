@@ -11,10 +11,13 @@ namespace Interfaces_GII
     public partial class CuadroModal : Window
     {
         public ObservableCollection<Coordenadas> datos;
+        Style stR, st;
         public CuadroModal()
         {
             InitializeComponent();
             datos = new ObservableCollection<Coordenadas>();
+            stR = FindResource("styleRed") as Style;
+            st = FindResource("styleA") as Style;
             DataContext = this;
                
         }
@@ -99,6 +102,8 @@ namespace Interfaces_GII
         {
             if (xTextBox.Text.Length != 0 && yTextBox.Text.Length != 0)
             {
+                xTextBox.Style = st;
+                yTextBox.Style = st;
                 double x = double.Parse(xTextBox.Text.Replace(".", ","));
                 double y = double.Parse(yTextBox.Text.Replace(".", ","));
 
@@ -111,11 +116,17 @@ namespace Interfaces_GII
                 yTextBox.Text = "";
                 cargaDatos();
                 
+
             } else
             {
                 if (xTextBox.Text.Length == 0)
                 {
-                    
+
+                    xTextBox.Style = stR;
+                }
+                if (yTextBox.Text.Length == 0)
+                {
+                    yTextBox.Style = stR;
                 }
             }
         }

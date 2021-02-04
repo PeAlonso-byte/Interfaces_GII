@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Interfaces_GII
@@ -49,7 +40,7 @@ namespace Interfaces_GII
             {
                 if (datosM != null && datosM.Count() != 0)
                 {
-                    dibuja();
+                    dibujaBarras();
                     dibuja_ejes();
                     btnDibujo.Content = "Limpiar";
                 }
@@ -68,13 +59,13 @@ namespace Interfaces_GII
                 if ((String)btnDibujo.Content == "Limpiar")
                 {
                     miCanvas.Children.Clear();
-                    dibuja();
+                    dibujaBarras();
                     dibuja_ejes();
                 }
             }
         }
 
-        private void dibuja()
+        private void dibujaBarras()
         {
             Point p;
             double x;
@@ -94,15 +85,27 @@ namespace Interfaces_GII
                 linea.Points.Clear();
             }
 
-            for (x = -ancho / 2 + ancho / 22; x <= ancho / 2 - ancho / 22; x++)
-            {
-                p = new Point();
-                p.X = x + ancho / 2;
-                p.Y = alto * (100 - ((x * 22 / ancho) * (x * 22 / ancho))) / 110;
-                linea.Points.Add(p);
-            }
+            /* for (x = -ancho / 2 + ancho / 22; x <= ancho / 2 - ancho / 22; x++)
+             {
+                 p = new Point();
+                 p.X = x + ancho / 2;
+                 p.Y = alto * (100 - ((x * 22 / ancho) * (x * 22 / ancho))) / 110;
+                 linea.Points.Add(p);
+             }
+            */
 
-            miCanvas.Children.Add(linea);
+            foreach (Coordenadas c in datosM)
+            {
+                Line linea1 = new Line();
+                linea1.Stroke = brush;
+                linea1.StrokeThickness = 2;
+                linea1.X1 = c.coorX + ancho/2;
+                linea1.Y1 = alto / 2;
+                linea1.X2 = c.coorX + ancho / 2;
+                linea1.Y2 = -c.coorY + alto / 2;
+                miCanvas.Children.Add(linea1);
+            }
+           // miCanvas.Children.Add(linea);
         }
 
         private void dibuja_ejes()

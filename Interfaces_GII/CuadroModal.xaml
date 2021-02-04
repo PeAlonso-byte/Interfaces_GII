@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interfaces_GII"
         mc:Ignorable="d"
-        Icon="icono.ico"
+        Icon="Resources/icono.ico"
         Title="CuadroModal" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="styleA">
+            <Setter Property="TextBox.BorderBrush" Value="Black" />
+            <Setter Property="TextBox.BorderThickness" Value="1"/>
+        </Style>
+        <Style x:Key="styleRed">
+            <Setter Property="TextBox.BorderBrush" Value="red" />
+            <Setter Property="TextBox.BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
     <Grid Background="#3a3d57">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
