@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interfaces_GII"
         mc:Ignorable="d"
+        Icon="icono.ico"
         Title="CuadroModal" Height="450" Width="800">
     <Grid Background="#3a3d57">
         <Grid.RowDefinitions>
@@ -13,24 +14,53 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" HorizontalAlignment="center" Orientation="Horizontal">
-            <Button x:Name="btnAnadir" Content="Añadir" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
-            <Button x:Name="btnEditar" Content="Editar" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
-            <Button x:Name="btnEliminar" Content="Eliminar" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Left" Orientation="Horizontal">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="xText" Text="X: " Grid.Row="0" Grid.Column="0" Foreground="White" HorizontalAlignment="Left"  Margin="10"/>
+                <TextBox x:Name="xTextBox" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="10" Width="50" AllowDrop="False" KeyDown="xTextBox_KeyDown"/>
+                
+                <TextBlock x:Name="yText" Text="Y: " Grid.Row="1" Grid.Column="0" Foreground="White" HorizontalAlignment="Left" Margin="10"/>
+                <TextBox x:Name="yTextBox" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" AllowDrop="False" KeyDown="yTextBox_KeyDown" Width="50" Margin="10"/>
+            </Grid>
+            
+            <Button x:Name="btnAnadir" Content="Añadir" Click="btnAnadir_Click" Background="#53577d" Margin="10 7" Padding="25 10" Foreground="White" BorderBrush="White"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" HorizontalAlignment="center" Orientation="Horizontal">
-            <Button x:Name="btnAceptar" Content="Aceptar" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
-            <Button x:Name="btnCancelar" Content="Cancelar" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
+            <Button x:Name="btnAceptar" Click="btnAceptar_Click" Content="Aceptar" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
+            <Button x:Name="btnCancelar" Click="btnCancelar_Click" Content="Cancelar" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
         </StackPanel>
-        <ListView Name="listaValores" Grid.Row="1" Margin="10 10" SelectionMode="Single" SelectionChanged="listaValores_SelectionChanged" Background="#53577d">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="X" DisplayMemberBinding="{Binding Nombre}" Width="400"/>
-                    <GridViewColumn Header="Y" DisplayMemberBinding="{Binding Apellidos}" Width="160" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+
+        <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button x:Name="btnAleatorio" Content="Generar aleatorio" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
+        </StackPanel>
+        <DataGrid x:Name="CustomerGrid" RowEditEnding="CustomerGrid_RowEditEnding" IsReadOnly="false" ItemsSource="{Binding}" AutoGenerateColumns="false" CanUserSortColumns="false" CanUserDeleteRows="true" CanUserAddRows="False" Grid.Row="1" AlternatingRowBackground="LightBlue" AlternationCount="2" Background="#53577d" Margin="10 10">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="center"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Background" Value="GhostWhite"/>
+                    <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                </Style>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="X" Binding="{Binding coorX}" Width="*" />
+                <DataGridTextColumn Header="Y" Binding="{Binding coorY}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

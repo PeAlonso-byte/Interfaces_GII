@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,13 @@ namespace Interfaces_GII
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<Coordenadas> datosM;
         double ancho, alto;
         Polyline linea, lineaX, lineaY;
         private CuadroModal cdm;
         private SolidColorBrush brush;
         private Color color1, color2;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -158,11 +161,23 @@ namespace Interfaces_GII
             {
                 cdm = new CuadroModal();
                 cdm.Owner = this; // Propietario ventana principal.
+                if (datosM != null)
+                { 
+                    foreach (Coordenadas c in datosM)
+                    {
+                        cdm.datos.Add(c);
+                    }
+                    cdm.cargaDatos();
+                }
                 cdm.ShowDialog();
 
                 if (cdm.DialogResult == true)
-                { 
-                 // Cuando aceptas
+                {
+                    datosM = new ObservableCollection<Coordenadas>();
+                    foreach (Coordenadas c in cdm.datos)
+                    {
+                        datosM.Add(c);
+                    }
                 }
             }
         }

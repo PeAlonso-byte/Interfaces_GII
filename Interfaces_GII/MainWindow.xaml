@@ -18,7 +18,7 @@
 
         </Canvas>
         <Menu Grid.Row="0" Background="#3a3d57" Foreground="White">
-            <MenuItem Header = "Añadir" Name="CDModal" Click="MenuItem_Click"/>
+            <MenuItem Header = "Consultar Valores" Name="CDModal" Click="MenuItem_Click"/>
         </Menu>
     </Grid>
 </Window>
