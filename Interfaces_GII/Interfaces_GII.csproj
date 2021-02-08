@@ -90,7 +90,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\Coordenada.cs" />
-    <Compile Include="ViewModels\ClientViewModel.cs" />
+    <Compile Include="ViewModels\CoordViewModel.cs" />
     <Compile Include="Utilities\CommandBase.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -22,10 +22,10 @@ namespace Interfaces_GII
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ClientViewModel cv;
+        private CoordViewModel cv;
         public MainWindow()
         {
-            cv = new ClientViewModel();
+            cv = new CoordViewModel();
             DataContext = cv;
             InitializeComponent();
             

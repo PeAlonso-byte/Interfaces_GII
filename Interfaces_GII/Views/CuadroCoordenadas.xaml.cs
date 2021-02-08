@@ -20,7 +20,7 @@ namespace Interfaces_GII.Views
     /// </summary>
     public partial class CuadroCoordenadas : Window
     {
-        public CuadroCoordenadas(ClientViewModel cv)
+        public CuadroCoordenadas(CoordViewModel cv)
         {
 
             DataContext = cv;

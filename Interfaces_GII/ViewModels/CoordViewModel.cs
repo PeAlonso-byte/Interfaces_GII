@@ -14,7 +14,7 @@ using Interfaces_GII.Views;
 
 namespace Interfaces_GII.ViewModels
 {
-    public class ClientViewModel : ObservableCollection<Coordenada>, INotifyPropertyChanged
+    public class CoordViewModel : ObservableCollection<Coordenada>, INotifyPropertyChanged
     {
 
         #region Atributos
@@ -26,72 +26,52 @@ namespace Interfaces_GII.ViewModels
         private ICommand addCoordCommand;
         private ICommand clearListCommand;
         private ICommand openCoordDialogCommand;
+        private ICommand closeCoordDialogCommand;
+        private CuadroCoordenadas c;
         #endregion
 
         #region Propiedades
-        /*public int SelectedIndexOfCollection
+        public string CoorX
         {
             get
             {
-                return selectedIndex;
-            }//Fin de get.
-            set
-            {
-                selectedIndex = value;
-                OnPropertyChanged("SelectedIndexOfCollection");
-
-                //Activa el evento OnPropertyChanged de los atributos para refrescar las propiedades segun el indice seleccionado.
-                //OnPropertyChanged("CoorX");
-                //OnPropertyChanged("CoorY");
-            }//Fin de set.
-        }//Fin de propiedad Selected.
-        */
-        public double CoorX
-        {
-            get
-            {
-                return coorX;
+                if (coorX == 9999999) return "";
+                return coorX.ToString();
             }
             set
             {
-                if (this.Items.Count == 0)
+                try
                 {
-                    coorX = value;
-                } 
-                else
-                {
-                    coorX = value;
+                    coorX = double.Parse(value);
+                    OnPropertyChanged("CoorX");
+                } catch (Exception) {
+                    coorX = 9999999;
+                    OnPropertyChanged("CoorX");
+
                 }
-                OnPropertyChanged("CoorX");
+
             }
         }//Fin de propiedad CoorX.
 
-        public double CoorY
+        public string CoorY
         {
             get
             {
-                if (this.Items.Count == 0)
-                {
-                    return coorY;
-                }
-                
-                else
-                {
-                    return coorY;
-                }
+                if (coorY == 9999999) return "";
+                return coorY.ToString();
             }
             set
             {
-                if (this.Items.Count == 0)
+                try
                 {
-                    coorY = value;
+                    coorY = double.Parse(value);
+                    OnPropertyChanged("CoorY");
+                } catch (Exception) {
+                    coorY = 9999999;
+                    OnPropertyChanged("CoorY");
+
                 }
-                
-                else
-                {
-                    coorY = value;
-                }
-                OnPropertyChanged("CoorY");
+
             }
         }//Fin de propiedad CoorY.
 
@@ -124,16 +104,24 @@ namespace Interfaces_GII.ViewModels
             get { return openCoordDialogCommand; }
             set { openCoordDialogCommand = value; }
         } // Fin de ICommand OpenCoordDialog
+
+        public ICommand CloseCoordDialogCommand
+        {
+            get { return closeCoordDialogCommand; }
+            set { closeCoordDialogCommand = value; }
+        }
         #endregion
 
         #region Constructores
-        public ClientViewModel()
+        public CoordViewModel()
         {
-            
+            CoorX = "";
+            CoorY = "";
 
             AddCoordCommand = new CommandBase(param => this.AddCoord());
             ClearListCommand = new CommandBase(new Action<Object>(ClearCoordList));
             OpenCoordDialogCommand = new CommandBase(param => this.OpenDialog());
+            CloseCoordDialogCommand = new CommandBase(param => this.CloseDialog());
         }//Fin de constructor.
         #endregion
 
@@ -153,23 +141,46 @@ namespace Interfaces_GII.ViewModels
         private void AddCoord()
         {
             Coordenada coor = new Coordenada();
-            coor.CoorX = CoorX;
-            coor.CoorY = CoorY;
-            this.Add(coor);
-            ClearCoordFields(null);
+            try
+            {
+                coor.CoorX = double.Parse(CoorX);
+                coor.CoorY = double.Parse(CoorY);
+                if (coor.CoorX < 9999999 && coor.CoorY < 9999999)
+                    if (coor.CoorX > -9999999 && coor.CoorY > -9999999)
+                        this.Add(coor);
+                CoorX = "";
+                CoorY = "";
+            } catch (Exception) { }
+            
         }//Fin de AddClient.
 
         private void OpenDialog()
         {
-            CuadroCoordenadas c = new CuadroCoordenadas(this);
-            c.ShowDialog();
+            if (c != null) return;                                      
+            c = new CuadroCoordenadas(this);
+            c.Closed += dialog_Closed;
+            c.Show();
+        }
+
+        private void CloseDialog()
+        {
+            if (c != null)
+            {
+                c.Close();
+                
+            }
+        }
+
+        private void dialog_Closed(object sender, EventArgs e)
+        {
+            c = null;
         }
 
         private void ClearCoordFields(object obj)
         {
             //SelectedIndexOfCollection = -1;
-            CoorY = 0;
-            CoorX = 0;
+            CoorY = "";
+            CoorX = "";
         }//Fin de AddClient.
 
         private void addDefaultCoord()
@@ -184,6 +195,11 @@ namespace Interfaces_GII.ViewModels
         private void ClearCoordList(Object obj)
         {
             this.Clear();
+        }
+
+        private void MuestraCoordenadas()
+        {
+            
         }
         #endregion
     }//Fin de clase.
