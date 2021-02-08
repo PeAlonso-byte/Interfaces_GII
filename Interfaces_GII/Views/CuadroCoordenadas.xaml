@@ -38,7 +38,7 @@
         <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
             <Button x:Name="btnAleatorio" Content="Generar aleatorio" Background="#53577d" Margin="10 7" Padding="20 10" Foreground="White" BorderBrush="White"/>
         </StackPanel>
-        <DataGrid x:Name="gridCoord" SelectedIndex="{Binding SelectedIndexOfCollection, Mode=TwoWay}" ColumnWidth="*" CanUserAddRows="False" Grid.Row="1"  Margin="10 10" AlternatingRowBackground="LightBlue" AlternationCount="2" Background="#53577d">
+        <DataGrid x:Name="gridCoord" SelectedIndex="{Binding CoordViewModel, Mode=TwoWay}" ColumnWidth="*" CanUserAddRows="False" Grid.Row="1"  Margin="10 10" AlternatingRowBackground="LightBlue" AlternationCount="2" Background="#53577d" AutoGenerateColumns="False">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="HorizontalContentAlignment" Value="center"/>
@@ -51,6 +51,10 @@
                     <Setter Property="TextBlock.TextAlignment" Value="Center" />
                 </Style>
             </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="CoorX" Binding="{Binding CoorX}"/>
+                <DataGridTextColumn Header="CoorY" Binding="{Binding CoorY}"/>
+            </DataGrid.Columns>
         </DataGrid>
 
     </Grid>

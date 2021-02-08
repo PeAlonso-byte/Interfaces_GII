@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Interfaces_GII.Views;
 using Interfaces_GII.ViewModels;
+using System.ComponentModel;
 
 namespace Interfaces_GII
 {
@@ -28,7 +29,19 @@ namespace Interfaces_GII
             cv = new CoordViewModel();
             DataContext = cv;
             InitializeComponent();
+            controlCanvas.ItemsSource = cv;
             
+        }
+
+        public CoordViewModel ViewModel
+        {
+            get { return (CoordViewModel)DataContext; }
+        }
+
+        private void miCanvas_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ViewModel.Wid = e.NewSize.Width;
+            ViewModel.Hei = e.NewSize.Height;
         }
     }
 }

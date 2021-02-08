@@ -6,7 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Shapes;
 using Interfaces_GII.Model;
 using Interfaces_GII.ViewModels;
 using Interfaces_GII.Views;
@@ -23,6 +25,8 @@ namespace Interfaces_GII.ViewModels
         //private int id;
         private double coorX;
         private double coorY;
+        private double wid, hei; // Tamaño del canvas
+        private Line linea;
         private ICommand addCoordCommand;
         private ICommand clearListCommand;
         private ICommand openCoordDialogCommand;
@@ -31,6 +35,20 @@ namespace Interfaces_GII.ViewModels
         #endregion
 
         #region Propiedades
+        public double Wid
+        {
+            get { return wid; }
+            set
+            {
+                wid = value;
+            }
+        }
+
+        public double Hei
+        {
+            get { return hei; }
+            set { hei = value; }
+        }
         public string CoorX
         {
             get
@@ -44,6 +62,8 @@ namespace Interfaces_GII.ViewModels
                 {
                     coorX = double.Parse(value);
                     OnPropertyChanged("CoorX");
+
+                    // Llamo a un metodo
                 } catch (Exception) {
                     coorX = 9999999;
                     OnPropertyChanged("CoorX");
@@ -110,6 +130,7 @@ namespace Interfaces_GII.ViewModels
             get { return closeCoordDialogCommand; }
             set { closeCoordDialogCommand = value; }
         }
+
         #endregion
 
         #region Constructores
@@ -123,6 +144,8 @@ namespace Interfaces_GII.ViewModels
             OpenCoordDialogCommand = new CommandBase(param => this.OpenDialog());
             CloseCoordDialogCommand = new CommandBase(param => this.CloseDialog());
         }//Fin de constructor.
+
+        
         #endregion
 
         #region Interface
@@ -182,6 +205,7 @@ namespace Interfaces_GII.ViewModels
             CoorY = "";
             CoorX = "";
         }//Fin de AddClient.
+
 
         private void addDefaultCoord()
         {

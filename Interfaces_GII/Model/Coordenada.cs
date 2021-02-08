@@ -10,28 +10,30 @@ namespace Interfaces_GII.Model
     {
 
         #region Atributos
-        ///*private int id;
         private double coorX;
         private double coorY;
+        private double fromX, fromY = 0; // Al instanciar la linea siempre va a ir desde y = 0 hasta x=value
+        private double toX, toY; 
         #endregion
 
         #region Propiedades
-        /*public int Id
+
+        public double FromX
         {
-            get
-            {
-                return id;
-            }//Fin de get.
-            set
-            {
-                id = value;
-                OnPropertyChanged("Id");
-                OnPropertyChanged("DisplayName");
-            }
-
-        }*/
-        //Fin de propiedad Id.
-
+            get { return fromX; }
+        }
+        public double FromY
+        {
+            get { return fromY; }
+        }
+        public double ToX
+        {
+            get { return toX; }
+        }
+        public double ToY
+        {
+            get { return toY; }
+        }
         public double CoorX
         {
             get
@@ -41,8 +43,10 @@ namespace Interfaces_GII.Model
             set
             {
                 coorX = value;
+                fromX = value;
+                toX = value;
                 OnPropertyChanged("CoorX");
-                OnPropertyChanged("DisplayName");
+                
             }//Fin de set.
         }//Fin de propiedad Name.
 
@@ -55,18 +59,11 @@ namespace Interfaces_GII.Model
             set
             {
                 coorY = value;
+                toY = value;
                 OnPropertyChanged("CoorY");
-                OnPropertyChanged("DisplayName");
             }//Fin de set.
         }//Fin de propiedad LastName.
 
-        /*public string DisplayName
-        {
-            get
-            {
-                return Id + "-" + CoorX + " " + CoorY;
-            }
-        }*/
         //Fin de la propiedad readonly DisplayName.
         #endregion
 

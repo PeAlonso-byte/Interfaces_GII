@@ -10,8 +10,21 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <ItemsControl x:Name="controlCanvas" Grid.Row="2">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas x:Name="miCanvas" Grid.Row="2" Margin="10 10" Background="#53577d" SizeChanged="miCanvas_SizeChanged" ></Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                   <!-- <Line X1="{Binding From.X}" Y1="{Binding From.Y}"
+                      X2="{Binding To.X}" Y2="{Binding To.Y}"
+                      Stroke="DarkGray" StrokeThickness="3"/> -->
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         
-        <Canvas x:Name="miCanvas" Grid.Row="2" Margin="10 10" Background="#53577d" ></Canvas>
         <Menu Grid.Row="0" Background="#3a3d57" Foreground="White">
             <MenuItem Header = "Consultar Valores" Name="CDModal" Command="{Binding OpenCoordDialogCommand}"/>
         </Menu>
