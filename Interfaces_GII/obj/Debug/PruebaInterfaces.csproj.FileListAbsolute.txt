@@ -1,0 +1,17 @@
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\PruebaInterfaces.csprojAssemblyReference.cache
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\MainWindow.g.cs
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\App.g.cs
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\PruebaInterfaces_MarkupCompile.cache
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\bin\Debug\PruebaInterfaces.exe.config
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\bin\Debug\PruebaInterfaces.exe
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\bin\Debug\PruebaInterfaces.pdb
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\MainWindow.baml
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\PruebaInterfaces.g.resources
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\PruebaInterfaces.Properties.Resources.resources
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\PruebaInterfaces.csproj.GenerateResource.cache
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\PruebaInterfaces.csproj.CoreCompileInputs.cache
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\PruebaInterfaces.exe
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\PruebaInterfaces.pdb
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\Views\PruebaVentana.g.cs
+C:\Users\Pedro\source\repos\PruebaInterfaces\PruebaInterfaces\obj\Debug\Views\PruebaVentana.baml
