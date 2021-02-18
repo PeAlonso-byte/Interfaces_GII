@@ -46,5 +46,4 @@ C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\Interfac
 C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\Interfaces_GII.csproj.CoreCompileInputs.cache
 C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\Interfaces_GII.exe
 C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\Interfaces_GII.pdb
-C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\Interfaces_GII_MarkupCompile.lref

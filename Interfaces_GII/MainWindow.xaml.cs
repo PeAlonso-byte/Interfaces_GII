@@ -1,20 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Interfaces_GII.Views;
+﻿using System.Windows;
 using Interfaces_GII.ViewModels;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
+using Interfaces_GII.Model;
 
 namespace Interfaces_GII
 {
@@ -29,19 +16,13 @@ namespace Interfaces_GII
             cv = new CoordViewModel();
             DataContext = cv;
             InitializeComponent();
-            controlCanvas.ItemsSource = cv;
+            //controlCanvas.ItemsSource = cv.Coordenadas;
             
         }
 
         public CoordViewModel ViewModel
         {
             get { return (CoordViewModel)DataContext; }
-        }
-
-        private void miCanvas_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            ViewModel.Wid = e.NewSize.Width;
-            ViewModel.Hei = e.NewSize.Height;
         }
     }
 }

@@ -16,17 +16,16 @@ using Interfaces_GII.Views;
 
 namespace Interfaces_GII.ViewModels
 {
-    public class CoordViewModel : ObservableCollection<Coordenada>, INotifyPropertyChanged
+    public class CoordViewModel :  INotifyPropertyChanged
     {
 
         #region Atributos
-        //private int selectedIndex;
-
-        //private int id;
         private double coorX;
+        private ObservableCollection<Coordenada> coordenadas;
+        //private ObservableCollection<Linea> lineas = new ObservableCollection<Linea>();
         private double coorY;
-        private double wid, hei; // Tamaño del canvas
-        private Line linea;
+        private double alturaCanvas = 380;
+        private double anchoCanvas = 750;
         private ICommand addCoordCommand;
         private ICommand clearListCommand;
         private ICommand openCoordDialogCommand;
@@ -35,19 +34,57 @@ namespace Interfaces_GII.ViewModels
         #endregion
 
         #region Propiedades
-        public double Wid
+        /* public ObservableCollection<Linea> Lineas
         {
-            get { return wid; }
+            get
+            {
+                return lineas;
+            }
             set
             {
-                wid = value;
+                lineas = value;
+                OnPropertyChanged("Lineas");
+            }
+        }*/
+        public double AlturaCanvas
+        {
+            get
+            {
+                return alturaCanvas;
+            }
+            set
+            {
+                alturaCanvas = value;
+                OnPropertyChanged("AlturaCanvas");
             }
         }
-
-        public double Hei
+        public double AnchoCanvas
         {
-            get { return hei; }
-            set { hei = value; }
+            get
+            {
+                return anchoCanvas;
+            }
+            set
+            {
+                anchoCanvas = value;
+                OnPropertyChanged("AnchoCanvas");
+            }
+        }
+        public ObservableCollection<Coordenada> Coordenadas
+        {
+            get
+            {
+                if (coordenadas == null)
+                {
+                    coordenadas = new ObservableCollection<Coordenada>();
+                } 
+                return coordenadas;
+            }
+            set
+            {
+                coordenadas = value;
+                OnPropertyChanged("Coordenadas");
+            }
         }
         public string CoorX
         {
@@ -72,7 +109,6 @@ namespace Interfaces_GII.ViewModels
 
             }
         }//Fin de propiedad CoorX.
-
         public string CoorY
         {
             get
@@ -94,7 +130,6 @@ namespace Interfaces_GII.ViewModels
 
             }
         }//Fin de propiedad CoorY.
-
         public ICommand AddCoordCommand
         {
             get
@@ -106,7 +141,6 @@ namespace Interfaces_GII.ViewModels
                 addCoordCommand = value;
             }
         }//Fin de ICommand AddCoordCommand.
-
         public ICommand ClearListCommand
         {
             get
@@ -118,19 +152,16 @@ namespace Interfaces_GII.ViewModels
                 clearListCommand = value;
             }
         }//Fin de ICommand ClearCommand.
-
         public ICommand OpenCoordDialogCommand
         {
             get { return openCoordDialogCommand; }
             set { openCoordDialogCommand = value; }
         } // Fin de ICommand OpenCoordDialog
-
         public ICommand CloseCoordDialogCommand
         {
             get { return closeCoordDialogCommand; }
             set { closeCoordDialogCommand = value; }
         }
-
         #endregion
 
         #region Constructores
@@ -161,18 +192,21 @@ namespace Interfaces_GII.ViewModels
         #endregion
 
         #region Metodos/Funcciones
-        private void AddCoord()
+        public void AddCoord()
         {
             Coordenada coor = new Coordenada();
+            Linea milinea = new Linea();
             try
             {
                 coor.CoorX = double.Parse(CoorX);
                 coor.CoorY = double.Parse(CoorY);
                 if (coor.CoorX < 9999999 && coor.CoorY < 9999999)
                     if (coor.CoorX > -9999999 && coor.CoorY > -9999999)
-                        this.Add(coor);
-                CoorX = "";
-                CoorY = "";
+                    { 
+                        coordenadas.Add(coor);
+                        
+                    }
+                ClearCoordFields();
             } catch (Exception) { }
             
         }//Fin de AddClient.
@@ -199,7 +233,7 @@ namespace Interfaces_GII.ViewModels
             c = null;
         }
 
-        private void ClearCoordFields(object obj)
+        private void ClearCoordFields()
         {
             //SelectedIndexOfCollection = -1;
             CoorY = "";
@@ -212,13 +246,13 @@ namespace Interfaces_GII.ViewModels
             Coordenada coor = new Coordenada();
             coor.CoorX = 10;
             coor.CoorY = 10;
-            this.Add(coor);
-            ClearCoordFields(null);
+            coordenadas.Add(coor);
+            ClearCoordFields();
         }
 
         private void ClearCoordList(Object obj)
         {
-            this.Clear();
+            coordenadas.Clear();
         }
 
         private void MuestraCoordenadas()
@@ -227,4 +261,5 @@ namespace Interfaces_GII.ViewModels
         }
         #endregion
     }//Fin de clase.
+
 }//Fin de namespace.

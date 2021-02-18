@@ -25,7 +25,7 @@ namespace Interfaces_GII.Views
 
             DataContext = cv;
             InitializeComponent();
-            gridCoord.ItemsSource = cv;
+            gridCoord.ItemsSource = cv.Coordenadas;
         }
     }
 }
