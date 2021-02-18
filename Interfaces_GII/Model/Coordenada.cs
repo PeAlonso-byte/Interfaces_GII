@@ -6,28 +6,15 @@ using System.Threading.Tasks;
 
 namespace Interfaces_GII.Model
 {
-    public class Coordenada : NotifyBase
+    public class Coordenada : CoordenadasLineas
     {
 
         #region Atributos
         private double coorX;
         private double coorY;
-        private Linea miLinea = new Linea();
         #endregion
 
         #region Propiedades
-        public Linea MiLinea
-        {
-            get
-            {
-                return miLinea;
-            }
-            set
-            {
-                miLinea = value;
-                OnPropertyChanged("MiLinea");
-            }
-        }
         public double CoorX
         {
             get
@@ -37,8 +24,8 @@ namespace Interfaces_GII.Model
             set
             {
                 coorX = value;
-                miLinea.FromX = value;
-                miLinea.ToX = value;
+                this.FromX = value;
+                this.ToX = value;
                 OnPropertyChanged("CoorX");
                 
             }//Fin de set.
@@ -53,7 +40,7 @@ namespace Interfaces_GII.Model
             set
             {
                 coorY = value;
-                miLinea.ToY = value;
+                this.ToY = value;
                 OnPropertyChanged("CoorY");
             }//Fin de set.
         }//Fin de propiedad LastName.
@@ -61,69 +48,10 @@ namespace Interfaces_GII.Model
         //Fin de la propiedad readonly DisplayName.
         #endregion
 
+        #region Constructor
+        public Coordenada () { }
+        #endregion
+
     }//Fin de clase.
-
-    public class Linea : NotifyBase
-    {
-        #region Atributos
-        private double toX;
-        private double fromX;
-        private double toY;
-        private double fromY = 0; // Siempre va a ir desde 0 hasta toY
-        #endregion
-
-        #region Propiedades
-        public double ToX
-        {
-            get
-            {
-                return toX;
-            }
-            set
-            {
-                toX = value;
-                OnPropertyChanged("ToX");
-            }
-        }
-        public double ToY
-        {
-            get
-            {
-                return toY;
-            }
-            set
-            {
-                toY = value;
-                OnPropertyChanged("ToY");
-            }
-        }
-        public double FromX
-        {
-            get
-            {
-                return fromX;
-            }
-            set
-            {
-                fromX = value;
-                OnPropertyChanged("FromX");
-            }
-        }
-        public double FromY
-        {
-            get
-            {
-                return fromY;
-            }
-            set
-            {
-                fromY = value;
-                OnPropertyChanged("FromY");
-            }
-        }
-        #endregion
-
-
-    }
 
 }//Fin de namespace.

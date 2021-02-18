@@ -22,10 +22,9 @@ namespace Interfaces_GII.ViewModels
         #region Atributos
         private double coorX;
         private ObservableCollection<Coordenada> coordenadas;
-        //private ObservableCollection<Linea> lineas = new ObservableCollection<Linea>();
         private double coorY;
-        private double alturaCanvas = 380;
-        private double anchoCanvas = 750;
+        private double alturaCanvas;
+        private double anchoCanvas;
         private ICommand addCoordCommand;
         private ICommand clearListCommand;
         private ICommand openCoordDialogCommand;

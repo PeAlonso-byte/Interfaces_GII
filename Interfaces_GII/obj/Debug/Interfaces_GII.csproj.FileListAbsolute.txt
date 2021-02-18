@@ -47,3 +47,10 @@ C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\Interfac
 C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\Interfaces_GII.exe
 C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\Interfaces_GII.pdb
 C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\Interfaces_GII_MarkupCompile.lref
+C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\bin\Debug\Assisticant.dll
+C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\bin\Debug\Assisticant.Facades.dll
+C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\bin\Debug\Assisticant.XAML.dll
+C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\bin\Debug\JungleControls.dll
+C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\bin\Debug\Assisticant.xml
+C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\bin\Debug\Assisticant.XAML.xml
+C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\Interfaces_GII.csproj.CopyComplete
