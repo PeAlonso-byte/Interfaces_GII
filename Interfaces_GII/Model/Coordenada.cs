@@ -24,8 +24,6 @@ namespace Interfaces_GII.Model
             set
             {
                 coorX = value;
-                this.FromX = value;
-                this.ToX = value;
                 OnPropertyChanged("CoorX");
                 
             }//Fin de set.
@@ -40,7 +38,6 @@ namespace Interfaces_GII.Model
             set
             {
                 coorY = value;
-                this.ToY = value;
                 OnPropertyChanged("CoorY");
             }//Fin de set.
         }//Fin de propiedad LastName.

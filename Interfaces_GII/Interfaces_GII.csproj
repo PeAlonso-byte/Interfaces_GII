@@ -92,6 +92,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\CoordenadasLineas.cs" />
+    <Compile Include="Utilities\MyItemControl.cs" />
     <Compile Include="Views\CuadroCoordenadas.xaml.cs">
       <DependentUpon>CuadroCoordenadas.xaml</DependentUpon>
     </Compile>

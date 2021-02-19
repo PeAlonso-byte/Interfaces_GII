@@ -33,18 +33,6 @@ namespace Interfaces_GII.ViewModels
         #endregion
 
         #region Propiedades
-        /* public ObservableCollection<Linea> Lineas
-        {
-            get
-            {
-                return lineas;
-            }
-            set
-            {
-                lineas = value;
-                OnPropertyChanged("Lineas");
-            }
-        }*/
         public double AlturaCanvas
         {
             get
@@ -54,6 +42,12 @@ namespace Interfaces_GII.ViewModels
             set
             {
                 alturaCanvas = value;
+                if (Coordenadas != null)
+                {
+                    foreach (Coordenada coorden in Coordenadas) {
+                        ObtenerCoordenadas(coorden);
+                    }
+                }
                 OnPropertyChanged("AlturaCanvas");
             }
         }
@@ -66,6 +60,13 @@ namespace Interfaces_GII.ViewModels
             set
             {
                 anchoCanvas = value;
+                if (Coordenadas != null)
+                {
+                    foreach (Coordenada coorden in Coordenadas)
+                    {
+                        ObtenerCoordenadas(coorden);
+                    }
+                }
                 OnPropertyChanged("AnchoCanvas");
             }
         }
@@ -194,14 +195,14 @@ namespace Interfaces_GII.ViewModels
         public void AddCoord()
         {
             Coordenada coor = new Coordenada();
-            Linea milinea = new Linea();
             try
             {
                 coor.CoorX = double.Parse(CoorX);
                 coor.CoorY = double.Parse(CoorY);
                 if (coor.CoorX < 9999999 && coor.CoorY < 9999999)
                     if (coor.CoorX > -9999999 && coor.CoorY > -9999999)
-                    { 
+                    {
+                        coor = ObtenerCoordenadas(coor);
                         coordenadas.Add(coor);
                         
                     }
@@ -254,10 +255,15 @@ namespace Interfaces_GII.ViewModels
             coordenadas.Clear();
         }
 
-        private void MuestraCoordenadas()
+        private Coordenada ObtenerCoordenadas(Coordenada c)
         {
-            
+            c.FromX = AnchoCanvas / 2 + c.CoorX;
+            c.FromY = AlturaCanvas / 2;
+            c.ToX = AnchoCanvas / 2 + c.CoorX;
+            c.ToY = AlturaCanvas / 2 + c.CoorY;
+            return c;
         }
+        
         #endregion
     }//Fin de clase.
 

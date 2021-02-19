@@ -54,3 +54,4 @@ C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\bin\Debug\JungleCo
 C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\bin\Debug\Assisticant.xml
 C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\bin\Debug\Assisticant.XAML.xml
 C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\Interfaces_GII.csproj.CopyComplete
+C:\Users\Pedro\Documents\GitHub\Interfaces_GII\Interfaces_GII\obj\Debug\GeneratedInternalTypeHelper.g.cs
