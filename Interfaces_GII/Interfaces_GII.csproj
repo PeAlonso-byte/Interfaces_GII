@@ -159,5 +159,15 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\function.ico" />
+    <Resource Include="Resources\tabla.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tabla2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\function2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -22,6 +22,7 @@ namespace Interfaces_GII.ViewModels
         #region Atributos
         private double coorX;
         private ObservableCollection<Coordenada> coordenadas;
+        private ObservableCollection<Coordenada> coordenadasPolinomio;
         private double coorY;
         private double alturaCanvas;
         private double anchoCanvas;
@@ -29,10 +30,20 @@ namespace Interfaces_GII.ViewModels
         private ICommand clearListCommand;
         private ICommand openCoordDialogCommand;
         private ICommand closeCoordDialogCommand;
+        private int selectedTab;
         private CuadroCoordenadas c;
         #endregion
 
         #region Propiedades
+        public int SelectedTab
+        {
+            get { return selectedTab; }
+            set
+            {
+                selectedTab = value;
+                OnPropertyChanged("SelectedTab");
+            }
+        }
         public double AlturaCanvas
         {
             get
@@ -68,6 +79,22 @@ namespace Interfaces_GII.ViewModels
                     }
                 }
                 OnPropertyChanged("AnchoCanvas");
+            }
+        }
+        public ObservableCollection<Coordenada> CoordenadasPolinomio
+        {
+            get
+            {
+                if (coordenadasPolinomio == null)
+                {
+                    coordenadasPolinomio = new ObservableCollection<Coordenada>();
+                }
+                return coordenadasPolinomio;
+            }
+            set
+            {
+                coordenadasPolinomio = value;
+                OnPropertyChanged("CoordenadasPolinomio");
             }
         }
         public ObservableCollection<Coordenada> Coordenadas
@@ -194,7 +221,7 @@ namespace Interfaces_GII.ViewModels
         #region Metodos/Funcciones
         public void AddCoord()
         {
-            Coordenada coor = new Coordenada();
+            Coordenada coor = new Coordenada(this);
             try
             {
                 coor.CoorX = double.Parse(CoorX);
@@ -202,7 +229,7 @@ namespace Interfaces_GII.ViewModels
                 if (coor.CoorX < 9999999 && coor.CoorY < 9999999)
                     if (coor.CoorX > -9999999 && coor.CoorY > -9999999)
                     {
-                        coor = ObtenerCoordenadas(coor);
+                        //coor = ObtenerCoordenadas(coor);
                         coordenadas.Add(coor);
                         
                     }
@@ -255,12 +282,12 @@ namespace Interfaces_GII.ViewModels
             coordenadas.Clear();
         }
 
-        private Coordenada ObtenerCoordenadas(Coordenada c)
+        public Coordenada ObtenerCoordenadas(Coordenada c)
         {
-            c.FromX = AnchoCanvas / 2 + c.CoorX;
-            c.FromY = AlturaCanvas / 2;
-            c.ToX = AnchoCanvas / 2 + c.CoorX;
-            c.ToY = AlturaCanvas / 2 + c.CoorY;
+            c.FromX = (AnchoCanvas+20)/ 2 + c.CoorX;
+            c.FromY = (AlturaCanvas+40) / 2;
+            c.ToX = (AnchoCanvas+20) / 2 + c.CoorX;
+            c.ToY = (AlturaCanvas+40) / 2 + c.CoorY;
             return c;
         }
         

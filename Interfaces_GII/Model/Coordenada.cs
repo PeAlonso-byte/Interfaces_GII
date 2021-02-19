@@ -12,6 +12,7 @@ namespace Interfaces_GII.Model
         #region Atributos
         private double coorX;
         private double coorY;
+        ViewModels.CoordViewModel vm;
         #endregion
 
         #region Propiedades
@@ -24,6 +25,7 @@ namespace Interfaces_GII.Model
             set
             {
                 coorX = value;
+                vm.ObtenerCoordenadas(this);
                 OnPropertyChanged("CoorX");
                 
             }//Fin de set.
@@ -38,6 +40,7 @@ namespace Interfaces_GII.Model
             set
             {
                 coorY = value;
+                vm.ObtenerCoordenadas(this);
                 OnPropertyChanged("CoorY");
             }//Fin de set.
         }//Fin de propiedad LastName.
@@ -47,6 +50,10 @@ namespace Interfaces_GII.Model
 
         #region Constructor
         public Coordenada () { }
+        public Coordenada (ViewModels.CoordViewModel padre)
+        {
+            vm = padre;
+        }
         #endregion
 
     }//Fin de clase.
