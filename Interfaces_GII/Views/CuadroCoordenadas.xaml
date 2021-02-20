@@ -4,7 +4,6 @@
         xmlns:local="clr-namespace:Interfaces_GII"
         Icon="../Resources/icono.ico"
         Title="Coordenadas" Height="450" Width="800" MinHeight="450" MinWidth="800">
-    
     <Grid Background="#3a3d57" x:Name="gridVentana">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -16,11 +15,11 @@
                     x:Name="TestTabs"
                     BorderThickness="0"
                     TabStripPlacement="Top">
-            <TabItem Background="Transparent" Header="Manual">
-                <!--<TabItem.Header x:Uid="tabmanual">
-                    <Image Width="50" Source="../Resources/function.ico"/>
+            <TabItem Background="Transparent">
+                <TabItem.Header x:Uid="tabmanual">
+                    <Image Width="50" Source="../Resources/tabla2.png"/>
                 </TabItem.Header>
-                -->
+                
                 <Grid Background="#3a3d57" x:Name="gridManual">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -70,10 +69,10 @@
             
             
             
-            <TabItem Background="Transparent" Header="Polinomio" Foreground="White">
-                <!-- <TabItem.Header>
-                    <Image Width="50" Source="../Resources/tabla2.png"/>
-                </TabItem.Header> -->
+            <TabItem Background="Transparent" Foreground="White">
+                <TabItem.Header>
+                    <Image Width="50" Source="../Resources/function2.png"/>
+                </TabItem.Header>
                 <Grid Background="#3a3d57" x:Name="gridPolinomio">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -97,7 +96,7 @@
                     <StackPanel Grid.Row="0" HorizontalAlignment="Right" Orientation="Horizontal">
                         <Button x:Name="btnAleatorio" Content="Generar aleatorio" Background="#53577d" Margin="10 7" Padding="20 10" Foreground="White" BorderBrush="White"/>
                     </StackPanel>
-                    <DataGrid x:Name="gridCoordPolinomio" ItemsSource="{Binding Path=CoordenadasPolinomio, Mode=TwoWay}" ColumnWidth="*" CanUserAddRows="False" Grid.Row="1"  Margin="10 10" AlternatingRowBackground="LightBlue" AlternationCount="2" Background="#53577d" AutoGenerateColumns="False">
+                    <DataGrid x:Name="gridCoordPolinomio" ItemsSource="{Binding Path=Coordenadas, Mode=TwoWay}" ColumnWidth="*" CanUserAddRows="False" Grid.Row="1"  Margin="10 10" AlternatingRowBackground="LightBlue" AlternationCount="2" Background="#53577d" AutoGenerateColumns="False">
                         <DataGrid.Resources>
                             <Style TargetType="{x:Type DataGridColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="center"/>

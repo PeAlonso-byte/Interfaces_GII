@@ -2,6 +2,9 @@
 using Interfaces_GII.ViewModels;
 using System.Collections.ObjectModel;
 using Interfaces_GII.Model;
+using System.Windows.Shapes;
+using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace Interfaces_GII
 {
@@ -17,7 +20,7 @@ namespace Interfaces_GII
             DataContext = cv;
             InitializeComponent();
             //controlCanvas.ItemsSource = cv.Coordenadas;
-            
+
         }
 
         public CoordViewModel ViewModel

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Shapes;
 using Interfaces_GII.Model;
 using Interfaces_GII.ViewModels;
@@ -22,25 +23,94 @@ namespace Interfaces_GII.ViewModels
         #region Atributos
         private double coorX;
         private ObservableCollection<Coordenada> coordenadas;
-        private ObservableCollection<Coordenada> coordenadasPolinomio;
         private double coorY;
         private double alturaCanvas;
         private double anchoCanvas;
+        private double mitadAltura;
+        private double mitadAnchura;
         private ICommand addCoordCommand;
         private ICommand clearListCommand;
         private ICommand openCoordDialogCommand;
         private ICommand closeCoordDialogCommand;
         private int selectedTab;
         private CuadroCoordenadas c;
+
+        /* Atributos parte polinomio */
+        private double rangeXMin;
+        private double rangeXMax;
+        private string funtionExpression;
         #endregion
 
         #region Propiedades
+ 
+
+        public double MitadAltura
+        {
+            get
+            {
+                return mitadAltura;
+            }
+            set
+            {
+                mitadAltura = value;
+                OnPropertyChanged("MitadAltura");
+            }
+        }
+        public double MitadAnchura
+        {
+            get
+            {
+                return mitadAnchura;
+            }
+            set
+            {
+                mitadAnchura = value;
+                OnPropertyChanged("MitadAnchura");
+            }
+        }
+        public double RangeXMin
+        {
+            get
+            {
+                return rangeXMin;
+            }
+            set
+            {
+                rangeXMin = value;
+                OnPropertyChanged("RangeXMin");
+            }
+        }
+        public double RangeXMax
+        {
+            get
+            {
+                return rangeXMax;
+            }
+            set
+            {
+                rangeXMax = value;
+                OnPropertyChanged("RangeXMax");
+            }
+        }
+        public string FunctionExpression
+        {
+            get
+            {
+                return funtionExpression;
+            }
+            set
+            {
+                funtionExpression = value;
+                OnPropertyChanged("FunctionExpression");
+            }
+        }
         public int SelectedTab
         {
             get { return selectedTab; }
             set
             {
                 selectedTab = value;
+                Coordenadas.Clear();
                 OnPropertyChanged("SelectedTab");
             }
         }
@@ -53,7 +123,8 @@ namespace Interfaces_GII.ViewModels
             set
             {
                 alturaCanvas = value;
-                if (Coordenadas != null)
+                if (alturaCanvas != 0) MitadAltura = alturaCanvas/2;
+                if (Coordenadas != null && Coordenadas.Count > 0)
                 {
                     foreach (Coordenada coorden in Coordenadas) {
                         ObtenerCoordenadas(coorden);
@@ -71,7 +142,8 @@ namespace Interfaces_GII.ViewModels
             set
             {
                 anchoCanvas = value;
-                if (Coordenadas != null)
+                if (anchoCanvas != 0) MitadAnchura = anchoCanvas/2;
+                if (Coordenadas != null && Coordenadas.Count > 0)
                 {
                     foreach (Coordenada coorden in Coordenadas)
                     {
@@ -79,22 +151,6 @@ namespace Interfaces_GII.ViewModels
                     }
                 }
                 OnPropertyChanged("AnchoCanvas");
-            }
-        }
-        public ObservableCollection<Coordenada> CoordenadasPolinomio
-        {
-            get
-            {
-                if (coordenadasPolinomio == null)
-                {
-                    coordenadasPolinomio = new ObservableCollection<Coordenada>();
-                }
-                return coordenadasPolinomio;
-            }
-            set
-            {
-                coordenadasPolinomio = value;
-                OnPropertyChanged("CoordenadasPolinomio");
             }
         }
         public ObservableCollection<Coordenada> Coordenadas
@@ -196,7 +252,6 @@ namespace Interfaces_GII.ViewModels
         {
             CoorX = "";
             CoorY = "";
-
             AddCoordCommand = new CommandBase(param => this.AddCoord());
             ClearListCommand = new CommandBase(new Action<Object>(ClearCoordList));
             OpenCoordDialogCommand = new CommandBase(param => this.OpenDialog());
@@ -284,10 +339,10 @@ namespace Interfaces_GII.ViewModels
 
         public Coordenada ObtenerCoordenadas(Coordenada c)
         {
-            c.FromX = (AnchoCanvas+20)/ 2 + c.CoorX;
-            c.FromY = (AlturaCanvas+40) / 2;
-            c.ToX = (AnchoCanvas+20) / 2 + c.CoorX;
-            c.ToY = (AlturaCanvas+40) / 2 + c.CoorY;
+            c.FromX = (AnchoCanvas)/ 2 + c.CoorX;
+            c.FromY = (AlturaCanvas) / 2;
+            c.ToX = (AnchoCanvas) / 2 + c.CoorX;
+            c.ToY = (AlturaCanvas) / 2 - c.CoorY;
             return c;
         }
         
