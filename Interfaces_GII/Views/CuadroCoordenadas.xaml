@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Interfaces_GII"
+        xmlns:e="http://schemas.microsoft.com/xaml/behaviors"
         Icon="../Resources/icono.ico"
         Title="Coordenadas" Height="450" Width="800" MinHeight="450" MinWidth="800">
     <Grid Background="#3a3d57" x:Name="gridVentana">
@@ -45,7 +46,7 @@
                         </Grid>
                         <Button x:Name="btnAnadir" Content="Añadir" Command="{Binding AddCoordCommand}" Background="#53577d" Margin="10 7" Padding="25 10" Foreground="White" BorderBrush="White"/>
                     </StackPanel>
-                    <DataGrid x:Name="gridCoord" ItemsSource="{Binding Path=Coordenadas, Mode=TwoWay}" ColumnWidth="*" CanUserAddRows="False" Grid.Row="1"  Margin="10 10" AlternatingRowBackground="LightBlue" AlternationCount="2" Background="#53577d" AutoGenerateColumns="False">
+                    <DataGrid x:Name="gridCoord" ItemsSource="{Binding Path=Coordenadas, Mode=TwoWay}" SelectionUnit="Cell" SelectionMode="Single" ColumnWidth="*" CanUserAddRows="False" Grid.Row="1"  Margin="10 10" AlternatingRowBackground="LightBlue" AlternationCount="2" Background="#53577d" AutoGenerateColumns="False">
                         <DataGrid.Resources>
                             <Style TargetType="{x:Type DataGridColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="center"/>
@@ -62,6 +63,11 @@
                             <DataGridTextColumn Header="CoorX" Binding="{Binding CoorX}"/>
                             <DataGridTextColumn Header="CoorY" Binding="{Binding CoorY}"/>
                         </DataGrid.Columns>
+                        <e:Interaction.Triggers>
+                            <e:EventTrigger EventName="CellEditEnding">
+                                <e:InvokeCommandAction Command="{Binding GridCellEditEndingCommand}"/>
+                            </e:EventTrigger>
+                        </e:Interaction.Triggers>
                     </DataGrid>
 
                 </Grid>

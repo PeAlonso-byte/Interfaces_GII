@@ -14,14 +14,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <Line Grid.Row="2" x:Name="lineaX"  X1="0" Y1="{Binding MitadAltura}"
+        <Line Visibility="{Binding Ejes}" Grid.Row="2" x:Name="lineaX"  X1="0" Y1="{Binding MitadAltura}"
                       X2="{Binding AnchoCanvas}" Y2="{Binding MitadAltura}"
                       Stroke="White" StrokeThickness="3" Panel.ZIndex="1"/>
-        <Line Grid.Row="2" x:Name="lineaY"  X1="{Binding MitadAnchura}" Y1="0"
+        <Line Visibility="{Binding Ejes}" Grid.Row="2" x:Name="lineaY"  X1="{Binding MitadAnchura}" Y1="0"
                       X2="{Binding MitadAnchura}" Y2="{Binding AnchoCanvas}"
                       Stroke="White" StrokeThickness="3" Panel.ZIndex="1"/>
-        
-        <cc:MyItemControl x:Name="controlCanvas" Grid.Row="2" ItemsSource="{Binding Path=Coordenadas}">
+        <cc:MyItemControl x:Name="controlCanvas" Grid.Row="2" ItemsSource="{Binding Path=Coordenadas}" Visibility="{Binding BarrasCanvas}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas x:Name="miCanvas" Grid.Row="2" Background="#53577d">
@@ -39,7 +38,7 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate >
                     <Line X1="{Binding FromX}" Y1="{Binding FromY}"
                       X2="{Binding ToX}" Y2="{Binding ToY}"
                       Stroke="White" StrokeThickness="3"/>
@@ -47,9 +46,26 @@
                 
             </ItemsControl.ItemTemplate>
         </cc:MyItemControl>
+        <cc:MyItemControl x:Name="controlCanvasPuntos" Grid.Row="2" Visibility="{Binding PoliCanvas}" ItemsSource="{Binding Puntos}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas x:Name="miCanvas2" Grid.Row="2" Background="#53577d">
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Polyline Stretch="Fill" Grid.Column="0"
+                        x:Name="miPolyline" Stroke="Red" StrokeThickness="3">
+                    </Polyline>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </cc:MyItemControl>
         
         <Menu Grid.Row="0" Background="#3a3d57" Foreground="White">
             <MenuItem Header = "Consultar Valores" Name="CDModal" Command="{Binding OpenCoordDialogCommand}"/>
+            <MenuItem Header = "{Binding MTipo_Text}" Name="MTipo" Command="{Binding MTipo_ClickCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+            <MenuItem Header = "{Binding MEjes_Text}" Name="MEjes" Command="{Binding MEjes_ClickCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
         </Menu>
     </Grid>
 </Window>

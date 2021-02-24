@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,13 @@ namespace Interfaces_GII.ViewModels
 
         #region Atributos
         private double coorX;
+        private string _mTipo_Text;
+        private string _mEjex_Text;
+        private Visibility _ejes;
+        private Visibility _barrasCanvas;
+        private Visibility _poliCanvas;
         private ObservableCollection<Coordenada> coordenadas;
+        private PointCollection _puntos;
         private double coorY;
         private double alturaCanvas;
         private double anchoCanvas;
@@ -32,6 +39,9 @@ namespace Interfaces_GII.ViewModels
         private ICommand clearListCommand;
         private ICommand openCoordDialogCommand;
         private ICommand closeCoordDialogCommand;
+        private ICommand mejes_clickCommand;
+        private ICommand mtipo_clickCommand;
+        private ICommand _gridCellEditEndingCommand;
         private int selectedTab;
         private CuadroCoordenadas c;
 
@@ -42,8 +52,79 @@ namespace Interfaces_GII.ViewModels
         #endregion
 
         #region Propiedades
- 
-
+        public Visibility Ejes
+        {
+            get
+            {
+                return _ejes;
+            }
+            set
+            {
+                _ejes = value;
+                OnPropertyChanged("Ejes");
+            }
+        }
+        public Visibility BarrasCanvas
+        {
+            get
+            {
+                return _barrasCanvas;
+            }
+            set
+            {
+                _barrasCanvas = value;
+                OnPropertyChanged("BarrasCanvas");
+            }
+        }
+        public Visibility PoliCanvas
+        {
+            get
+            {
+                return _poliCanvas;
+            }
+            set
+            {
+                _poliCanvas = value;
+                OnPropertyChanged("PoliCanvas");
+            }
+        }
+        public string MTipo_Text
+        {
+            get
+            {
+                return _mTipo_Text;
+            }
+            set
+            {
+                _mTipo_Text = value;
+                OnPropertyChanged("MTipo_Text");
+            }
+        }
+        public string MEjes_Text
+        {
+            get
+            {
+                return _mEjex_Text;
+            }
+            set
+            {
+                _mEjex_Text = value;
+                OnPropertyChanged("MEjes_Text");
+            }
+        }
+        public PointCollection Puntos
+        {
+            get
+            {
+                if (_puntos == null) _puntos = new PointCollection();
+                return _puntos;
+            }
+            set
+            {
+                _puntos = value;
+                OnPropertyChanged("Puntos");
+            }
+        }
         public double MitadAltura
         {
             get
@@ -126,9 +207,7 @@ namespace Interfaces_GII.ViewModels
                 if (alturaCanvas != 0) MitadAltura = alturaCanvas/2;
                 if (Coordenadas != null && Coordenadas.Count > 0)
                 {
-                    foreach (Coordenada coorden in Coordenadas) {
-                        ObtenerCoordenadas(coorden);
-                    }
+                    Coordenadas = ObtenerCoordenadas(Coordenadas);
                 }
                 OnPropertyChanged("AlturaCanvas");
             }
@@ -145,10 +224,7 @@ namespace Interfaces_GII.ViewModels
                 if (anchoCanvas != 0) MitadAnchura = anchoCanvas/2;
                 if (Coordenadas != null && Coordenadas.Count > 0)
                 {
-                    foreach (Coordenada coorden in Coordenadas)
-                    {
-                        ObtenerCoordenadas(coorden);
-                    }
+                    Coordenadas = ObtenerCoordenadas(Coordenadas);
                 }
                 OnPropertyChanged("AnchoCanvas");
             }
@@ -166,7 +242,6 @@ namespace Interfaces_GII.ViewModels
             set
             {
                 coordenadas = value;
-                OnPropertyChanged("Coordenadas");
             }
         }
         public string CoorX
@@ -245,6 +320,27 @@ namespace Interfaces_GII.ViewModels
             get { return closeCoordDialogCommand; }
             set { closeCoordDialogCommand = value; }
         }
+        public ICommand GridCellEditEndingCommand
+        {
+            get
+            {
+                return _gridCellEditEndingCommand;
+            }
+            set
+            {
+                _gridCellEditEndingCommand = value;
+            }
+        }
+        public ICommand MEjes_ClickCommand
+        {
+            get { return mejes_clickCommand; }
+            set { mejes_clickCommand = value; }
+        }
+        public ICommand MTipo_ClickCommand
+        {
+            get { return mtipo_clickCommand; }
+            set { mtipo_clickCommand = value; }
+        }
         #endregion
 
         #region Constructores
@@ -252,10 +348,22 @@ namespace Interfaces_GII.ViewModels
         {
             CoorX = "";
             CoorY = "";
+            MTipo_Text = "Puntos";
+            MEjes_Text = "Ejes-On";
+            Ejes = Visibility.Visible;
+            BarrasCanvas = Visibility.Visible;
+            PoliCanvas = Visibility.Collapsed;
             AddCoordCommand = new CommandBase(param => this.AddCoord());
             ClearListCommand = new CommandBase(new Action<Object>(ClearCoordList));
             OpenCoordDialogCommand = new CommandBase(param => this.OpenDialog());
             CloseCoordDialogCommand = new CommandBase(param => this.CloseDialog());
+            GridCellEditEndingCommand = new CommandBase(new Action<Object>(Grid_CellEditEnding));
+            MEjes_ClickCommand = new CommandBase(new Action<Object>(MEjes_Click));
+            MTipo_ClickCommand = new CommandBase(new Action<Object>(MTipo_Click));
+            if (Coordenadas != null)
+            {
+                Coordenadas.CollectionChanged += OnCollectionChanged;
+            }
         }//Fin de constructor.
 
         
@@ -271,12 +379,28 @@ namespace Interfaces_GII.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }//Fin de OnPropertyChanged.
+
+        public void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Puntos.Clear();
+            Coordenadas = ObtenerCoordenadas(Coordenadas);
+            int i =Puntos.Count;
+            int j = Coordenadas.Count;
+        }
         #endregion
 
         #region Metodos/Funcciones
+        private void Grid_CellEditEnding(object sender)
+        {
+            Puntos.Clear();
+            if (Coordenadas != null && Coordenadas.Count > 0)
+            {
+                Coordenadas = ObtenerCoordenadas(Coordenadas);
+            }
+        }
         public void AddCoord()
         {
-            Coordenada coor = new Coordenada(this);
+            Coordenada coor = new Coordenada();
             try
             {
                 coor.CoorX = double.Parse(CoorX);
@@ -310,6 +434,37 @@ namespace Interfaces_GII.ViewModels
             }
         }
 
+        private void MEjes_Click(object sender)
+        {
+            
+            if (MEjes_Text.Equals("Ejes-On"))
+            {
+                Ejes = Visibility.Collapsed;
+                MEjes_Text = "Ejes-Off";
+            }
+            else
+            {
+                MEjes_Text = "Ejes-On";
+                Ejes = Visibility.Visible;
+            }
+        }
+        private void MTipo_Click(object sender)
+        {
+            
+            if (MTipo_Text.Equals("Polilinea"))
+            {
+
+                MTipo_Text = "Puntos";
+                BarrasCanvas = Visibility.Visible;
+                PoliCanvas = Visibility.Collapsed;
+            }
+            else
+            {
+                MTipo_Text = "Polilinea";
+                BarrasCanvas = Visibility.Collapsed;
+                PoliCanvas = Visibility.Visible;
+            }
+        }
         private void dialog_Closed(object sender, EventArgs e)
         {
             c = null;
@@ -337,13 +492,19 @@ namespace Interfaces_GII.ViewModels
             coordenadas.Clear();
         }
 
-        public Coordenada ObtenerCoordenadas(Coordenada c)
+        public ObservableCollection<Coordenada> ObtenerCoordenadas(ObservableCollection<Coordenada> lista)
         {
-            c.FromX = (AnchoCanvas)/ 2 + c.CoorX;
-            c.FromY = (AlturaCanvas) / 2;
-            c.ToX = (AnchoCanvas) / 2 + c.CoorX;
-            c.ToY = (AlturaCanvas) / 2 - c.CoorY;
-            return c;
+            PointCollection _aux = new PointCollection();
+            foreach (Coordenada c in lista)
+            {
+                c.FromX = (AnchoCanvas) / 2 + c.CoorX;
+                c.FromY = (AlturaCanvas) / 2;
+                c.ToX = (AnchoCanvas) / 2 + c.CoorX;
+                c.ToY = (AlturaCanvas) / 2 - c.CoorY;
+                _aux.Add(new Point(c.ToX, c.ToY));
+            }
+            Puntos = _aux;
+            return lista;
         }
         
         #endregion

@@ -59,16 +59,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assisticant, Version=2.3.0.0, Culture=neutral, PublicKeyToken=19e83a8289e31a8f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Assisticant.1.1.4\lib\net45\Assisticant.dll</HintPath>
+      <HintPath>..\packages\Assisticant.1.5.7\lib\net45\Assisticant.dll</HintPath>
     </Reference>
     <Reference Include="Assisticant.Facades, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8693a7693e4d4e55, processorArchitecture=MSIL">
       <HintPath>..\packages\Assisticant.Facades.1.1.0.0\lib\net45\Assisticant.Facades.dll</HintPath>
     </Reference>
     <Reference Include="Assisticant.XAML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=19e83a8289e31a8f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Assisticant.1.1.4\lib\net45\Assisticant.XAML.dll</HintPath>
+      <HintPath>..\packages\Assisticant.1.5.7\lib\net45\Assisticant.XAML.dll</HintPath>
     </Reference>
     <Reference Include="JungleControls, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JungleControls.1.8.0.0\lib\net45\JungleControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

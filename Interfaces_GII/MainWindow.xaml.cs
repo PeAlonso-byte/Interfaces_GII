@@ -20,6 +20,7 @@ namespace Interfaces_GII
             DataContext = cv;
             InitializeComponent();
             //controlCanvas.ItemsSource = cv.Coordenadas;
+            
 
         }
 
