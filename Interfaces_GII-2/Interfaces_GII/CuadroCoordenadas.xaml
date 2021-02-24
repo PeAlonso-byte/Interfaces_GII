@@ -1,0 +1,153 @@
+﻿<Window x:Class="Interfaces_GII.CuadroCoordenadas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:Interfaces_GII"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Icon="Resources/icono.ico"
+        Title="CuadroModal" Height="450" Width="800" MinHeight="450" MinWidth="800">
+    <Window.Resources>
+        <Style x:Key="styleA">
+            <Setter Property="TextBox.BorderBrush" Value="Black" />
+            <Setter Property="TextBox.BorderThickness" Value="1"/>
+        </Style>
+        <Style x:Key="styleRed">
+            <Setter Property="TextBox.BorderBrush" Value="red" />
+            <Setter Property="TextBox.BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#3a3d57">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Background="Transparent"  SelectedIndex="{Binding SelectedTab}" Grid.Row="0" x:Name="Tabs" BorderThickness="2" BorderBrush="White" Margin="5" TabStripPlacement="Top">
+            <TabItem Background="Transparent">
+                <TabItem.Header x:Uid="tabManual">
+                    <Image Width="50" Source="./Resources/tabla2.png"/>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="xText" Text="X: " Grid.Row="0" Grid.Column="0" Foreground="White" HorizontalAlignment="Left"  Margin="10 7"/>
+                    <TextBox x:Name="xTextBox" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10 7" AllowDrop="False"/>
+
+                    <TextBlock x:Name="yText" Text="Y: " Grid.Row="1" Grid.Column="0" Foreground="White" HorizontalAlignment="Left" Margin="10 7"/>
+                    <TextBox x:Name="yTextBox" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" AllowDrop="False"  Margin="10 7"/>
+                    <Button x:Name="btnAnadir" Grid.RowSpan="2" Grid.Column="2" Content="Añadir" Click="btnAnadir_Click" Background="#53577d" VerticalAlignment="Stretch" Margin="10 7" Foreground="White" BorderBrush="White"/>
+                    <Button x:Name="btnEliminar" Grid.RowSpan="2" Grid.Column="3" Content="Eliminar" Click="btnEliminar_Click" Background="#53577d" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10 7" Foreground="White" BorderBrush="White" Visibility="Collapsed"/>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem  Background="Transparent">
+                <TabItem.Header x:Uid="tabFuncion">
+                    <Image Width="50" Source="./Resources/function2.png"/>
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="xrangoMin" Text="{Binding XRangoMin}" Foreground="White" Margin="5" Grid.Row="0" Grid.Column="0" />
+
+                        <controls:RangeSlider Name="rangeSlider" Grid.Row="0" Grid.Column="1"
+                             LowerValue="-20" Minimum="-20" Maximum="20" HigherValue="20" 
+                             IsSnapToTickEnabled="True" Margin="5" TickPlacement="BottomRight" TickFrequency="0.5" Foreground="blue" >
+                        </controls:RangeSlider>
+                        <TextBlock x:Name="xrangoMax" Text="{Binding XRangoMax}" Foreground="White" Margin="5" Grid.Row="0" Grid.Column="2"/>
+                    </Grid>
+                    <ComboBox ItemsSource="{Binding GradoPolinomio}" Background="#FFB7B39D"  
+                        Name="cbGradoPolinomio" Grid.Row="0" Grid.Column="1" Margin="30 3" 
+                        SelectionChanged="cbGradoPolinomio_SelectionChanged" SelectedValue="{
+                        Binding Path=GradoPolinomioSelected, Mode=TwoWay}"/>
+                    <Grid Grid.Row="0" Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock x:Name="x4Text" Text="x4 + " Grid.Row="0" Grid.Column="1" Foreground="White" HorizontalAlignment="Center" Margin="10 7" Visibility="Collapsed"/>
+                        <TextBlock x:Name="x3Text" Text="x3 + " Grid.Row="0" Grid.Column="3" Foreground="White" HorizontalAlignment="Center" Margin="10 7" Visibility="Collapsed"/>
+                        <TextBlock x:Name="x2Text" Text="x2 + " Grid.Row="0" Grid.Column="5" Foreground="White" HorizontalAlignment="Center" Margin="10 7" Visibility="Collapsed"/>
+                        <TextBlock x:Name="x_Text" Text="x + " Grid.Row="0" Grid.Column="7" Foreground="White" HorizontalAlignment="Center" Margin="10 7" Visibility="Collapsed"/>
+                        <TextBlock x:Name="cText" Text="C" Grid.Row="0" Grid.Column="9" Foreground="White" HorizontalAlignment="Center" Margin="10 7" Visibility="Collapsed"/>
+                        <TextBox x:Name="yX4Box" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" AllowDrop="False" Text="0" Margin="0 5" Visibility="Collapsed"/>
+                        <TextBox x:Name="yX3Box" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" AllowDrop="False" Text="0" Margin="0 5" Visibility="Collapsed"/>
+                        <TextBox x:Name="yX2Box" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Stretch" AllowDrop="False" Text="0" Margin="0 5" Visibility="Collapsed"/>
+                        <TextBox x:Name="yXBox" Grid.Row="0" Grid.Column="6" HorizontalAlignment="Stretch" AllowDrop="False" Text="0" Margin="0 5" Visibility="Collapsed"/>
+                        <TextBox x:Name="yCBox" Grid.Row="0" Grid.Column="8" HorizontalAlignment="Stretch" AllowDrop="False" Text="0" Margin="0 5"  Visibility="Collapsed"/>
+                    </Grid>
+                    <Button Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="4"  x:Name="btnGenerar" Content="Generar Aleatorio" Click="btnGenerar_Click" Background="#53577d" Margin="10 7" Padding="25 10" Foreground="White" BorderBrush="White"/>
+                </Grid>
+
+            </TabItem>
+        </TabControl>
+
+
+        <StackPanel Grid.Row="3" HorizontalAlignment="center" Orientation="Horizontal">
+            <Button x:Name="btnDeSeleccionar" Click="btnDeSeleccionar_Click" Content="Quitar Seleccion" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White" Visibility="Collapsed"/>
+            <Button x:Name="btnLimpiar" Click="btnLimpiar_Click" Content="Vaciar Lista" Background="#53577d" Margin="10 10" Padding="20 10" Foreground="White" BorderBrush="White"/>
+            <Button x:Name="btnCerrar" Click="btnCerrar_Click" Content="Cerrar" Background="#53577d" Margin="10 10" Padding="35 10" Foreground="White" BorderBrush="White"/>
+        </StackPanel>
+        <DataGrid x:Name="CustomerGrid" IsReadOnly="True" CanUserSortColumns="false" SelectedIndex="{Binding SelectedIndex}" SelectedItem="{Binding SelectedItem}"  SelectionUnit="FullRow" ItemsSource="{Binding Coordenadas}" AutoGenerateColumns="false" CanUserAddRows="False" Grid.Row="1" AlternatingRowBackground="#53577d" AlternationCount="2" Background="#53577d" Margin="10 10">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="center"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Background" Value="GhostWhite"/>
+                    <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                </Style>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="TextBlock.TextAlignment" Value="Center" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="X" Binding="{Binding CoorX}" Width="*" />
+                <DataGridTextColumn Header="Y" Binding="{Binding CoorY}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
